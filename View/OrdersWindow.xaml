@@ -1,0 +1,144 @@
+﻿<Window x:Name="ordersWindow" x:Class="IS_EmployeesAccounting.OrdersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IS_EmployeesAccounting"
+        mc:Ignorable="d"
+        Title="Агентство недвижимости &amp;quot;Высота&amp;quot; - приказы" Height="750" Width="1060" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent"  ResizeMode="NoResize" AllowsTransparency="True">
+    <Border CornerRadius="10" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+                <Button x:Name="addBtn" 
+                Content="Добавить"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="118"
+                Height="42"
+                Background="#FF22335E"
+                Foreground="White"
+                BorderBrush="Black"
+                Click="addBtn_Click"
+                    Grid.Row="0" Cursor="Hand" FontFamily="Proxima Nova Rg">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="delBtn" 
+                Content="Удалить"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="118"
+                Height="42"
+                Background="#FF22335E"
+                Foreground="White"
+                BorderBrush="Black"
+                Click="delBtn_Click"
+                    Grid.Row="0" Cursor="Hand" FontFamily="Proxima Nova Rg" Margin="50,0,0,0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                
+                <Button x:Name="refreshBtn" 
+                Content="Обновить"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="118"
+                Height="42"
+                Background="#FF22335E"
+                Foreground="White"
+                BorderBrush="Black"
+                Click="refreshBtn_Click"
+                    Grid.Row="0" Cursor="Hand" FontFamily="Proxima Nova Rg" Margin="50,0,0,0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </StackPanel>
+            <Border x:Name="ordersBorder" Grid.Row="0" CornerRadius="10,10,0,0" MouseLeftButtonDown="ordersBorder_MouseLeftButtonDown">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#FF72C6EA" Offset="0.6"/>
+                        <GradientStop Color="#FF22335E" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="DocumentSign" Foreground="White" Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Приказы" FontSize="50" FontFamily="/IS_EmployeesAccounting;component/Fonts/#Gilroy Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+            <Button x:Name="backBtn" Grid.Column="1" Grid.Row="0" Margin="0,0,0,0" Width="80" Height="80" Click="backBtn_Click" HorizontalAlignment="Left" Background="Transparent" Style="{StaticResource MouseOverTransperent}" VerticalAlignment="Bottom">
+
+                <materialDesign:PackIcon Kind="ArrowBack" Foreground="White" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+
+            </Button>
+            <Button x:Name="closeBtn" 
+                    Content="X" FontSize="30" 
+                    Grid.Column="3" 
+                    Foreground="White"
+                    Style="{StaticResource MouseOverLight}"
+                    Cursor="Hand" 
+                    Click="closeBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="50">
+            </Button>
+            <DataGrid x:Name="dGridOrders" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Название" Binding="{Binding orderType.Name}" Width="200" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Дата составления" Binding="{Binding date, StringFormat=dd-MM-yyyy}" Width="130">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="ФИО" Width="250" Binding="{Binding Name}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn ElementStyle="{StaticResource RightAligned}" Header="Комментарий" Binding="{Binding Comment}" Width="300">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTemplateColumn >
+                        <DataGridTemplateColumn.CellTemplate>
+
+                            <DataTemplate>
+                                <Button Content="Редактировать" Name="btnEdit" Click="btnEdit_Click" Width="130" HorizontalAlignment="Center"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Border>
+</Window>

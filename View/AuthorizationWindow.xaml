@@ -1,0 +1,56 @@
+﻿<Window x:Name="authorizationWindow" x:Class="IS_EmployeesAccounting.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IS_EmployeesAccounting"
+        mc:Ignorable="d"
+        Title="" 
+        Height="670"
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border Background="White" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="210"/>
+
+                <RowDefinition Height="415"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="AuthorizationBorder" Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    CornerRadius="10,10,0,0" 
+                    MouseLeftButtonDown="AuthorizationBorder_MouseLeftButtonDown">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#FF72C6EA" Offset="0.7"/>
+                        <GradientStop Color="#FF22335E" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Button x:Name="closeBtn" 
+                    Content="X" FontSize="20" 
+                    Grid.Column="3" 
+                    Foreground="White"
+                    Style="{StaticResource MouseOverLight}"
+                    Cursor="Hand" 
+                    Click="closeBtn_Click">
+            </Button>
+            <Image Source="/Images/SzZoH0ubG-g.jpg" Grid.Column="1" Grid.Row="1" Margin="0,10,0,0"/>
+
+            <Frame x:Name="authorizationFrame" Grid.Column="1" Grid.Row="2" Height="375" Width="320" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
+
+
+        </Grid>
+    </Border>
+</Window>
